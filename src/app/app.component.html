@@ -1,0 +1,42 @@
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Created Date</th>
+            <!-- <th>Actions</th> -->
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let task of tasks; let i=index; trackBy :trackaByFn">
+            <tr>
+                <td>{{task.id}} {{i}}</td>
+                <td>{{task.title}}
+                    <ng-container *ngIf="task.isUrgent; else elseBlock"> <!-- then thenBlock -->
+                        <span>*</span>
+                    </ng-container>
+                    <!-- <ng-template #thenBlock>
+                        <span>*</span>
+                    </ng-template> -->
+                    <ng-template #elseBlock>
+                        <span>'</span>
+                    </ng-template>
+                </td>
+                <td>{{task.description}}</td>
+                <td>{{task.createdDate}}</td>
+                <!-- <td><button (click)="handleClick(i)">Set title</button></td> -->
+            </tr>
+
+        </ng-container>
+    </tbody>
+</table>
+
+<app-pippo>
+    <p #paragrafo>Funziona tutto</p>
+    <p greetings>Benvenuto!</p>
+</app-pippo>
+
+<ng-container *sortingLoop="let task of tasks">
+    <p>{{task.title}}</p>
+</ng-container>
